@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        .calculator { width: 220px; padding: 10px; border: 1px solid #ccc; }
+        input, button { width: 50px; height: 50px; font-size: 20px; }
+        input { width: 100%; text-align: right; margin-bottom: 10px; }
+        button { margin: 5px; cursor: pointer; }
+        button.operator { background: orange; color: white; }
+        button.equals { background: green; color: white; width: 110px; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input id="display" disabled>
+        <button onclick="appendNumber('7')">7</button><button onclick="appendNumber('8')">8</button><button onclick="appendNumber('9')">9</button><button class="operator" onclick="appendOperator('+')">+</button><br>
+        <button onclick="appendNumber('4')">4</button><button onclick="appendNumber('5')">5</button><button onclick="appendNumber('6')">6</button><button class="operator" onclick="appendOperator('-')">-</button><br>
+        <button onclick="appendNumber('1')">1</button><button onclick="appendNumber('2')">2</button><button onclick="appendNumber('3')">3</button><button class="operator" onclick="appendOperator('*')">*</button><br>
+        <button onclick="appendNumber('0')">0</button><button onclick="appendNumber('.')">.</button><button class="equals" onclick="calculate()">=</button><button class="operator" onclick="appendOperator('/')">/</button><br>
+        <button onclick="clearDisplay()">C</button>
+    </div>
+
+    <script>
+        let venancio = document.getElementById('display');
+        let luiz = '';
+        function appendNumber(number) { luiz += number; venancio.value = luiz; }
+        function appendOperator(operator) { if (luiz) { luiz += ' ' + operator + ' '; venancio.value = luiz; } }
+        function clearDisplay() { luiz = ''; venancio.value = ''; }
+        function calculate() { try { venancio.value = eval(luiz); luiz = venancio.value; } catch { venancio.value = 'Erro'; } }
+    </script>
+</body>
+</html>
